@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>User List</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./courts.css">
+</head>
+<body>
+    <div class="container">
+        <h1>User List</h1>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Username</th>
+                    <th>court number</th>
+                    <th>start time</th>
+                    <th>end time</th>
+                    <!-- Add other columns as needed -->
+                </tr>
+            </thead>
+            <tbody>
+                <% courts.forEach(court => { %>
+                    <tr>
+                        <td><%= court.username %></td>
+                        <td><%= court.courtNumber %></td>
+                        <td><%= court.startTime %></td>
+                        <td><%= court.endTime %></td>
+                        <!-- Add other columns as needed -->
+                    </tr>
+                <% }); %>
+            </tbody>
+            
+        </table>
+
+        <!-- Add other content or forms as needed -->
+
+        <p>Don't have an account? <a href="/signup">Sign up here</a></p>
+        <p><a href="./home.html">HOME</a></p>
+    </div>
+
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

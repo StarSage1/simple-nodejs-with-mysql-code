@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Signup</title>
+    <link href="/css/signup.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+    <h1>Signup</h1>
+    <form id="signupForm" method="POST" action="/api/signup">
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" required><br><br>
+        
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required><br><br>
+        
+        <label for="confirmPassword">Confirm Password:</label>
+        <input type="password" id="confirmPassword" name="confirmPassword" required><br><br>
+        
+        <input type="submit" value="Signup">
+    </form>
+</body>
+</html>

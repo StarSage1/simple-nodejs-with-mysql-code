@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>User List</title>
+    <link rel="stylesheet" href="user.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+            color: #333;
+            margin: 0;
+            padding: 20px;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 0;
+            background-color: #007bff;
+            color: white;
+        }
+
+        h1, h2 {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #007bff;
+        }
+
+        form {
+            max-width: 400px;
+            margin: 0 auto;
+        }
+
+        label {
+            font-weight: bold;
+            color: #007bff;
+        }
+
+        input[type="text"],
+        input[type="number"],
+        input[type="time"],
+        input[type="submit"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+
+        input[type="submit"] {
+            background-color: #007bff;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 30px;
+        }
+
+        th, td {
+            border: 1px solid #ccc;
+            padding: 8px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <span>Welcome back <%= username %></span>
+        <button class="signout">Sign Out</button>
+    </header>
+
+    <h1>Ajax Method</h1>
+
+    <h2>Add New User</h2>
+    <form id="addreservationForm">
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" required>
+        <label for="courtNumber">Court Number:</label>
+        <input type="number" id="courtNumber" name="courtNumber" required>
+        <label for="startTime">Start Time</label>
+        <input type="time" id="startTime" name="startTime" required>
+        <label for="endTime">End Time</label>
+        <input type="time" id="endTime" name="endTime" required>
+        <input type="submit" value="Add User">
+    </form>
+
+    <h1>User List</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Username</th>
+                <th>Court Number</th>
+                <th>Start Time</th>
+                <th>End Time</th>
+                <th>Date Reserved</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% users.forEach(user => { %>
+                <tr>
+                    <td><%= user.ID %></td>
+                    <td><%= user.username %></td>
+                    <td><%= user.courtNumber %></td>
+                    <td><%= user.startTime %></td>
+                    <td><%= user.endTime %></td>
+                    <td><%= user.datereserved %></td>
+                </tr>
+            <% }); %>
+        </tbody>
+    </table>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script>
+       $(document).ready(function(){
+
+
+$('#addreservationForm').submit(function(e){
+  e.preventDefault(); 
+
+  var formData = {
+      username: $('#username').val(),
+      CourtNumber: $('#courtNumber').val(),
+      StartTime: $('#startTime').val(),
+      EndTime: $('#endTime').val()
+  };
+
+  $.ajax({
+    type: 'POST',
+    url: '/api/addReservation',
+    data: formData,
+    success: function(response,status){
+      $("tbody").append(`
+      <tr>
+          <td>${response.ID}</td>
+          <td>${response.username}</td>
+          <td>${response.CourtNumber}</td>
+          <td>${response.StartTime}</td>
+          <td>${response.EndTime}</td>
+          <td>${response.datereserved}</td>
+      </tr>
+  `)
+    },
+    error: function(error){
+      console.error('Error adding user:', error);
+    }
+  });
+
+});
+
+$(".signout").click(function(){
+
+  $.ajax({
+    type: 'POST',
+    url: '/api/signout',
+    success: function(response,status){
+      
+      if(response.success == true)
+        document.location.href="/login";
+      else
+        alert("Error sign out");
+
+    },
+    error: function(error){
+      console.error('Error signing out:', error);
+    }
+  });
+
+});
+
+
+});
+    </script>
+</body>
+</html>

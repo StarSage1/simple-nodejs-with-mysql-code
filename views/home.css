@@ -1,0 +1,57 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0; /* Background color for the page */
+  }
+
+  .navbar {
+    background-color: rgba(0, 0, 0, 0.5); /* Transparent black background for the navbar */
+    padding: 15px;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+  }
+
+  .navbar ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+  }
+
+  .navbar li {
+    float: left;
+  }
+
+  .navbar li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+  }
+
+  .navbar li a:hover {
+    background-color: #ddd;
+    color: black;
+  }
+
+  /* CSS for badminton courts */
+  .courts-container {
+    padding-top: 60px; /* Adjust this value to leave space for the fixed navbar */
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+  }
+
+  .court {
+    width: 300px;
+    height: 200px;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    margin: 15px;
+    text-align: center;
+    line-height: 200px;
+    font-size: 24px;
+  }

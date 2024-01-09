@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>User List</title>
+    <!-- Link Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./login.css">
+</head>
+<body>
+    <div class="container">
+        <h1>User List</h1>
+        <table class="table">
+            <!-- Table content here -->
+        </table>
+
+        <h2>Login</h2>
+        <form id="loginForm" method="POST" action="/api/login">
+            <div class="form-group">
+                <label for="username">Username:</label>
+                <input type="text" id="username" name="username" class="form-control" required>
+            </div>
+            <div class="form-group">
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" class="form-control" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Login</button>
+        </form>
+
+        <!-- Add a link to redirect to the signup page -->
+        <p>Don't have an account? <a href="/signup">Sign up here</a></p>
+        <p><a href="./home.html">HOME</a></p>
+    </div>
+
+    <!-- Link Bootstrap JS (for certain components that require JS functionality) -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
